@@ -1,0 +1,36 @@
+============================================================================================
+BÁO CÁO ĐÁNH GIÁ THỰC NGHIỆM TOUCHASSIST (BAYES + VITERBI + N-GRAM TIẾNG VIỆT)
+============================================================================================
+Tập kiểm thử   : 20 câu tiếng Việt (217 từ) | Random Seed = 42
+Cấu hình nhiễu : Gaussian 2D (sigma = 15.0 px) | Chạm lặp run tay = 30% (50-180ms, < 2.5mm)
+Baseline       : Bàn phím thường (nearest-key) + Lọc lặp thô < 500ms
+TouchAssist AI : Mô hình Không gian Gaussian 2D + Thời gian run tay + N-gram (Ký tự & Từ)
+
+1. BẢNG SO SÁNH HIỆU NĂNG TỔNG HỢP
+--------------------------------------------------------------------------------------------
+Chỉ số đánh giá                  |        Baseline |   TouchAssist AI |          Cải thiện
+--------------------------------------------------------------------------------------------
+WER - Tỉ lệ lỗi từ (%)           |          33.64% |            5.53% |         Giảm 83.6%
+Backspaces (lần/câu)             |            4.15 |             0.65 |         Giảm 84.3%
+WPM - Tốc độ gõ (từ/phút)        |           22.14 |            34.78 |         Tăng 57.1%
+Độ trễ giải mã TB (ms/từ)        |         0.03 ms |          3.11 ms |         (< 50ms ✓)
+--------------------------------------------------------------------------------------------
+Chi tiết lỗi từ: Baseline sai 73/217 từ | TouchAssist AI sai 12/217 từ
+
+2. 10 VÍ DỤ TIÊU BIỂU MINH CHỨNG TRONG QUÁ TRÌNH CHẠY
+--------------------------------------------------------------------------------------------
+STT | Từ gốc     | Chạm nhiễu raw   | Baseline     | TouchAssist AI |    Độ trễ
+--------------------------------------------------------------------------------------------
+1   | thuốc      | thuoocss         | thuóc        | thuốc          |   4.72 ms
+2   | không      | knnooongg        | knong        | không          |   4.45 ms
+3   | nhiều      | nnhieeeuuff      | nhièu        | nhiều          |   5.81 ms
+4   | thấy       | thaaayss         | tháy         | thấy           |   5.12 ms
+5   | phải       | phhaaie          | phaie        | phải           |   4.31 ms
+6   | uống       | uooongs          | uóng         | uống           |   3.74 ms
+7   | buổi       | buuooir          | buỏi         | buổi           |   4.25 ms
+8   | đình       | ddinnhff         | dình         | đình           |   3.95 ms
+9   | luôn       | lluuoon          | luon         | luôn           |   4.31 ms
+10  | giấc       | giaaaccs         | giác         | giấc           |   4.12 ms
+--------------------------------------------------------------------------------------------
+Ghi chú: WPM được tính từ tổng thời gian gõ thô + thời gian nhấn Space (350ms/từ) + độ trễ giải mã + trễ lọc Baseline (500ms/lần lọc) + thời gian bấm Backspace sửa lỗi (600ms/ký tự).
+============================================================================================

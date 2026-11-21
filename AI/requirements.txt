@@ -1,0 +1,4 @@
+# TouchAssist chỉ sử dụng thư viện chuẩn của Python (Python >= 3.10):
+# - tkinter (giao diện đồ họa demo)
+# - math, random, time, collections, dataclasses, typing, re, os
+# Không yêu cầu cài đặt thư viện bên ngoài.
