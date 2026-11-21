@@ -33,8 +33,8 @@ class TouchAssistApp:
         self.root.title(
             "TouchAssist - Hỗ trợ gõ tiếng Việt cho người bệnh Parkinson (Bayes + Viterbi)"
         )
-        self.root.geometry("1230x760")
-        self.root.minsize(1160, 700)
+        self.root.geometry("1240x760")
+        self.root.minsize(1220, 710)
         self.root.configure(bg="#f1f5f9")
 
         # Khởi tạo các thành phần lõi AI
@@ -105,11 +105,7 @@ class TouchAssistApp:
         main_container = tk.Frame(self.root, bg="#f1f5f9", padx=12, pady=10)
         main_container.pack(fill="both", expand=True)
 
-        # Cột trái: Output + Debug + Bàn phím ảo
-        left_col = tk.Frame(main_container, bg="#f1f5f9")
-        left_col.pack(side="left", fill="both", expand=True)
-
-        # Cột phải: Control Panel
+        # Pack cột phải trước để luôn giữ đủ chiều rộng bảng điều khiển (325px)
         right_col = tk.Frame(
             main_container,
             bg="#ffffff",
@@ -119,6 +115,10 @@ class TouchAssistApp:
         )
         right_col.pack(side="right", fill="y", padx=(12, 0))
         right_col.pack_propagate(False)
+
+        # Cột trái: Output + Debug + Bàn phím ảo
+        left_col = tk.Frame(main_container, bg="#f1f5f9")
+        left_col.pack(side="left", fill="both", expand=True)
 
         self._build_output_frame(left_col)
         self._build_debug_frame(left_col)
@@ -182,6 +182,7 @@ class TouchAssistApp:
 
         self.output_text = tk.Text(
             frame,
+            width=30,
             height=2,
             font=("Segoe UI", 18, "bold"),
             bg="#f8fafc",
@@ -261,6 +262,8 @@ class TouchAssistApp:
             fg="#b91c1c",
             font=("Consolas", 10, "bold"),
             anchor="w",
+            justify="left",
+            wraplength=470,
         ).pack(fill="x", pady=(2, 4))
 
         self.buffer_listbox = tk.Listbox(
@@ -282,6 +285,8 @@ class TouchAssistApp:
             fg="#0369a1",
             font=("Consolas", 9),
             anchor="w",
+            justify="left",
+            wraplength=470,
         ).pack(fill="x", pady=(4, 0))
 
         # Nửa phải Debug: Bảng Top-3 ứng viên
